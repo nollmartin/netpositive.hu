@@ -31,7 +31,7 @@ class DefaultController extends Controller
     /**
      * @Route("/{handle1}/{handle2}/{method}")
      */
-    public function netpositiveAction($handle1='', $handle2='', $method = 'fib')
+    public function netpositiveAction($handle1, $handle2, $method = 'fib')
     {
 
         $twitterList = array();
@@ -52,13 +52,13 @@ class DefaultController extends Controller
         foreach ($twitter1->statuses as $item) {
             $time = $item->created_at;
             $time = new \DateTime($time);
-            array_push($twitterList, ["date" => $time->format('Y.m.d H:i'), "text" => $item->text, "site" => "twitter/".$handle1]);
+            array_push($twitterList, ["date" => $time->format('Y.m.d H:i'), "text" => $item->text, "site" => "twitter/" . $handle1]);
         }
 
         foreach ($twitter2->statuses as $item) {
             $time = $item->created_at;
             $time = new \DateTime($time);
-            array_push($twitterList, ["date" => $time->format('Y.m.d H:i'), "text" => $item->text, "site" => "twitter/".$handle2]);
+            array_push($twitterList, ["date" => $time->format('Y.m.d H:i'), "text" => $item->text, "site" => "twitter/" . $handle2]);
         }
 
         asort($twitterList);
@@ -85,11 +85,14 @@ class DefaultController extends Controller
         $ret = array();
 
         if ($method == 'fib') {
+            $id = 1;
             foreach ($list as $k => $v) {
-                array_push($ret, $v);
-                if (in_array($k,$this->fib)) {
+                if (in_array($id, $this->fib) && $id > 2) {
                     array_push($ret, ["date" => "", "text" => $this->randomJoke(), "site" => "icndb"]);
+                } else {
+                    array_push($ret, $v);
                 }
+                $id++;
             }
         }
         if ($method == 'mod') {
