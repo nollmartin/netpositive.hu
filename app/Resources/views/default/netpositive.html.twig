@@ -6,7 +6,13 @@
             <div id="welcome">
                 <h1><span>Welcome to</span> Netpositive</h1>
             </div>
-
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
             <div id="status">
                 <p>
                 <table>
