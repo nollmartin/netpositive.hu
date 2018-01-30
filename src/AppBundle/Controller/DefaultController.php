@@ -29,25 +29,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/netpositive/{handle1}/{handle2}/{method}", name="netpositive")
+     * @Route("/{handle1}/{handle2}/{method}")
      */
     public function netpositiveAction($handle1='', $handle2='', $method = 'fib')
     {
 
         $twitterList = array();
 
-
-//        $this->get('session')->getFlashBag()->add('error', 'Your custom message');
-//        if ($handle1=='') {
-//            return $this->render('default/netpositive.html.twig', [
-//                'list' => $twitterList,
-//            ]);
-//        }
-
-
         $jokes = array();
         array_push($jokes, array('icndb', '', $this->randomJoke()));
-
 
         $ConsumerKey = 'qENAF2DglBNZD42RVrR1Pb3uR';
         $ConsumerSecret = '8jWZlWeM9wHHDeTHEk3bh0aiJ98FwPbkBa9py4d9xLWX7mxF00';
